@@ -22,3 +22,23 @@ git clone https://github.com/alekseik1/python_mipt_study_1-2
 
 ###### Я хочу помочь проекту, что мне делать?
 Это очень просто! Просто откройте issue здесь, и ваши предложения будут рассмотрены. Форки, пулл реквесты и иже с ним будут с радостью рассмотрены нами)
+
+
+N, M = map(int, input().split())
+Edges = []
+for i in range(M):
+    start, end, weight = map(int, input().split())
+    Edges.append([weight, start, end])
+Edges.sort()
+Comp = [i for i in range(N)]
+tree = []
+Ans = 0
+for weight, start, end in Edges:
+    if Comp[start] != Comp[end]:
+        tree.append((start, end))
+        Ans += weight
+        a = Comp[start]
+        b = Comp[end]
+        for i in range(N):
+            if Comp[i] == b:
+                Comp[i] = a
